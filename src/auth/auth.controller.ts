@@ -8,6 +8,7 @@ import {
   Post,
   Get,
   UseGuards,
+  Req,
   UnauthorizedException,
   Res,
   Req,
@@ -64,6 +65,18 @@ export class AuthController {
     }
   }
 
+<<<<<<< HEAD
+  @Get('google')
+  @UseGuards(AuthGuard('google'))
+  async googleAuth(@Req() req) {
+    
+  }
+
+  @Get('google/callback')
+  @UseGuards(AuthGuard('google'))
+  async googleAuthRedirect(@Req() req) {
+    return this.authService.googleLogin(req);
+=======
   @Get('login/google')
   async getGoogleOAuthUrl(@Req() req) {
     const redirectUrl = await this.authService.getGoogleOAuthUrl();
@@ -78,5 +91,6 @@ export class AuthController {
     const jwt = await this.authService.signin(user);
 
     res.send(jwt);
+>>>>>>> ad1a1b4459b777322544493166dc35e49189509c
   }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
@@ -10,9 +11,12 @@ import { jwtSecret } from 'src/utils/constants';
 import { Request, Response } from 'express';
 import { JwtPayload, Tokens } from './types';
 import * as jwt from 'jsonwebtoken';
+<<<<<<< HEAD
+=======
 import { OAuth2Client } from 'google-auth-library';
 import { log } from 'console';
 
+>>>>>>> ad1a1b4459b777322544493166dc35e49189509c
 @Injectable()
 export class AuthService {
   private readonly googleOAuth2Client: OAuth2Client;
@@ -208,6 +212,19 @@ export class AuthService {
     return token;
   }
 
+<<<<<<< HEAD
+  async googleLogin(req:any){
+    if(!req.user){
+      return "No User Found With The Google Account"
+    }
+    return {
+      message:"User Info Found From Google",
+      user:req.user
+    }
+  }
+
+  // ...
+=======
   async getGoogleOAuthUrl(): Promise<string> {
     const authorizeUrl = this.googleOAuth2Client.generateAuthUrl({
       access_type: 'offline',
@@ -220,4 +237,5 @@ export class AuthService {
   async validateGoogleOAuthLogin(profile: any): Promise<any> {
     console.log('gauth happening');
   }
+>>>>>>> ad1a1b4459b777322544493166dc35e49189509c
 }
