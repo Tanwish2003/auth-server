@@ -10,6 +10,8 @@ import {
   UseGuards,
   Req,
   UnauthorizedException,
+  Res,
+  Req,
 } from '@nestjs/common';
 import { GetCurrentUserId, GetCurrentUser } from '../common/decorators';
 import { AtGuard, RtGuard } from '../common/guards';
@@ -63,6 +65,7 @@ export class AuthController {
     }
   }
 
+<<<<<<< HEAD
   @Get('google')
   @UseGuards(AuthGuard('google'))
   async googleAuth(@Req() req) {
@@ -73,5 +76,21 @@ export class AuthController {
   @UseGuards(AuthGuard('google'))
   async googleAuthRedirect(@Req() req) {
     return this.authService.googleLogin(req);
+=======
+  @Get('login/google')
+  async getGoogleOAuthUrl(@Req() req) {
+    const redirectUrl = await this.authService.getGoogleOAuthUrl();
+
+    return { url: redirectUrl };
+  }
+
+  @Get('login/google/callback')
+  @UseGuards(AuthGuard('google'))
+  async loginWithGoogleCallback(@Req() req, @Res() res): Promise<void> {
+    const user = req.body;
+    const jwt = await this.authService.signin(user);
+
+    res.send(jwt);
+>>>>>>> ad1a1b4459b777322544493166dc35e49189509c
   }
 }
