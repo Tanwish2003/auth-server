@@ -62,16 +62,16 @@ export class AuthController {
       throw new UnauthorizedException('Invalid access token');
     }
   }
-  
+
   @Get('google')
   @UseGuards(AuthGuard('google'))
-  async googleAuth(@Req() req){
-
+  async googleAuth(@Req() req) {
+    
   }
 
   @Get('google/callback')
   @UseGuards(AuthGuard('google'))
-  async googleAuthRedirect(@Req() req){
-    return this.authService.googleLogin(req)
+  async googleAuthRedirect(@Req() req) {
+    return this.authService.googleLogin(req);
   }
 }

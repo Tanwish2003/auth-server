@@ -198,7 +198,7 @@ export class AuthService {
     return token;
   }
 
-  async googleLogin(req){
+  async googleLogin(req:any){
     if(!req.user){
       return "No User Found With The Google Account"
     }
