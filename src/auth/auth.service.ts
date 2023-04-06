@@ -1,3 +1,4 @@
+/* eslint-disable prettier/prettier */
 import { BadRequestException, ForbiddenException, Injectable } from '@nestjs/common';
 import { PrismaService } from 'prisma/prisma.service';
 import { ConfigService } from '@nestjs/config';
@@ -10,7 +11,6 @@ import { jwtSecret } from 'src/utils/constants';
 import { Request, Response } from 'express';
 import { JwtPayload, Tokens } from './types';
 import * as jwt from 'jsonwebtoken';
-
 @Injectable()
 export class AuthService {
   constructor(private prisma: PrismaService, private jwtService: JwtService, private config: ConfigService) {}
@@ -197,4 +197,16 @@ export class AuthService {
 
     return token;
   }
+
+  async googleLogin(req){
+    if(!req.user){
+      return "No User Found With The Google Account"
+    }
+    return {
+      message:"User Info Found From Google",
+      user:req.user
+    }
+  }
+
+  // ...
 }

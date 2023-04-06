@@ -11,6 +11,7 @@ import { AuthModule } from './auth/auth.module';
 import { PrismaModule } from '../prisma/prisma.module';
 // import { UsersModule } from './users/';
 import { UserModule } from './users/user.module';
+import { GoogleStrategy } from './auth/strategies/google.strategy';
 
 @Module({
   imports: [ConfigModule.forRoot(), DatabaseModule,AuthModule,PrismaModule, UserModule],
